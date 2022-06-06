@@ -33,6 +33,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -138,6 +139,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce28c78cefec21449a3c1d4950f83fd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 0
+  dashspeed: 10
+  dashlength: 0.5
+  dashcooldown: 2
 --- !u!114 &2718702606646654963
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -158,6 +163,7 @@ MonoBehaviour:
     type: 3}
   UiCanvasPrefab: {fileID: 7225852543368158398, guid: 346de805ce86cac47a4cbd7ad8df5a68,
     type: 3}
+  currentroom: 0
   StartingHealth: 3
   StartingSilverKeys: 0
   SilverKeys: 0

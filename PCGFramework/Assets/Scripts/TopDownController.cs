@@ -18,10 +18,18 @@ public class TopDownController : MonoBehaviour
     //Private References
     private Rigidbody2D RB;
     public float speed;
+    public float dashspeed;
+    public bool dashavailable;
+    public float dashlength = 0.5f;
+    public float dashcooldown = 1.0f;
+    private float dashcounter;
+    private float dashcoolcounter;
+
     // Start is called before the first frame update
     void Start()
     {
         RB = GetComponent<Rigidbody2D>();
+        speed = GetComponent<HeroStats>().Speed;
     }
 
     // Update is called once per frame
@@ -40,6 +48,36 @@ public class TopDownController : MonoBehaviour
             dir += Vector2.right;
 
         //Apply velocity
-        RB.velocity = dir.normalized * GetComponent<HeroStats>().Speed;
+        RB.velocity = dir.normalized * (speed);
+        Dash();
+    }
+    private void Dash()
+    {
+        if (dashcoolcounter <= 0 && dashcounter <= 0)
+        {
+            dashavailable = true;
+        }
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            if(dashcoolcounter<=0 &&dashcounter<=0)
+            {
+                speed = dashspeed;
+                dashcounter = dashlength;
+            }
+        }
+        if(dashcounter>0)
+        {
+            dashcounter -= Time.deltaTime;
+            if(dashcounter <= 0)
+            {
+                dashavailable = false;
+                speed = GetComponent<HeroStats>().Speed;
+                dashcoolcounter = dashcooldown;
+            }
+        }
+        if(dashcoolcounter>0)
+        {
+            dashcoolcounter -= Time.deltaTime;
+        }
     }
 }

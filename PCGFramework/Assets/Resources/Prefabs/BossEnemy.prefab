@@ -16,6 +16,8 @@ GameObject:
   - component: {fileID: 6048948920214717232}
   - component: {fileID: 3055895041805524547}
   - component: {fileID: -8799634690965059337}
+  - component: {fileID: 5939099789680590335}
+  - component: {fileID: 5100489315787807210}
   m_Layer: 0
   m_Name: BossEnemy
   m_TagString: Enemy
@@ -33,6 +35,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 7, y: 9, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -124,7 +127,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EnemyHealthBarPrefab: {fileID: 1248845440106708752, guid: 8b23492cb9efaae49ace4f65e89236ae,
     type: 3}
-  StartingHealth: 1
+  StartingHealth: 5
 --- !u!114 &6048948920214717233
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -137,8 +140,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40a8053b3862e4a4a85b5cbc794bf950, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AggroRange: 1
-  MoveSpeed: 1
+  AggroRange: 4
+  MoveSpeed: 2
   WanderInterval: 1
   Aggroed: 0
 --- !u!114 &6048948920214717232
@@ -155,9 +158,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BulletPrefab: {fileID: 949405139173548867, guid: 8a17d45d188b39449aa155aa0cdd70e0,
     type: 3}
-  ShootCooldown: 1
-  BulletSpeed: 1
-  BulletRange: 10
+  ShootCooldown: 0.5
+  BulletSpeed: 4
+  BulletRange: 4
   BulletsPerShot: 1
   BulletSpreadAngle: 0.5
 --- !u!114 &3055895041805524547
@@ -172,7 +175,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb3aabeb6a3189a4e937c3e3fa76e90d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Weight: 1
+  Weight: 5
   Padding: 1
   Leading: 0
 --- !u!58 &-8799634690965059337
@@ -191,3 +194,31 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &5939099789680590335
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6048948920214717231}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 661342ff637631a46ae6df7d405d13c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5100489315787807210
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6048948920214717231}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 815900321622c0a45bf41442da133347, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ECL: {fileID: 0}
+  ESL: {fileID: 0}
+  ES: {fileID: 0}
+  EnemyDifficulty: 6

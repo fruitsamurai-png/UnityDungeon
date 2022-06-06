@@ -17,7 +17,7 @@ public class CameraFollow : MonoBehaviour
 {
     //Public Properties
     public Transform ObjectToFollow;
-    public float MaxSpeed = 11.0f;
+    public float MaxSpeed = 200.0f;
     public float MinSpeed = 5.0f; 
     public float Interpolant = 0.25f;
 	private float MoveSpeed = 7.0f;
@@ -83,8 +83,8 @@ public class CameraFollow : MonoBehaviour
 		//Adjust if it is going too fast
 		if (zoomAdjust > MaxSpeed)
 			zoomAdjust = MaxSpeed;
-		else if (zoomAdjust < -MaxSpeed / 15.0f) //Zoom in slower than zoom out
-			zoomAdjust = -MaxSpeed / 15.0f;
+		else if (zoomAdjust < -MaxSpeed) //Zoom in slower than zoom out
+			zoomAdjust = -MaxSpeed ;
 
 		//Adjust if it is going too slow
 		if (zoomAdjust < MinSpeed && zoomAdjust > 0)

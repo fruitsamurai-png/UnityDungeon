@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 2714390907974507483}
   - component: {fileID: 6474112769617474920}
   - component: {fileID: 3973053343478611002}
+  - component: {fileID: 2515584888971241505}
   m_Layer: 0
   m_Name: FastEnemy
   m_TagString: Enemy
@@ -33,6 +34,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -16.305304, y: -7.0891194, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -124,7 +126,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EnemyHealthBarPrefab: {fileID: 1248845440106708752, guid: 8b23492cb9efaae49ace4f65e89236ae,
     type: 3}
-  StartingHealth: 1
+  StartingHealth: 2
 --- !u!114 &2714390907974507482
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -137,8 +139,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40a8053b3862e4a4a85b5cbc794bf950, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AggroRange: 1
-  MoveSpeed: 1
+  AggroRange: 3
+  MoveSpeed: 3
   WanderInterval: 1
   Aggroed: 0
 --- !u!114 &2714390907974507483
@@ -155,8 +157,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BulletPrefab: {fileID: 949405139173548867, guid: 8a17d45d188b39449aa155aa0cdd70e0,
     type: 3}
-  ShootCooldown: 1
-  BulletSpeed: 1
+  ShootCooldown: 0.5
+  BulletSpeed: 3
   BulletRange: 10
   BulletsPerShot: 1
   BulletSpreadAngle: 0.5
@@ -172,7 +174,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb3aabeb6a3189a4e937c3e3fa76e90d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Weight: 1
+  Weight: 2
   Padding: 1
   Leading: 0
 --- !u!58 &3973053343478611002
@@ -191,3 +193,19 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &2515584888971241505
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2714390907974507460}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 815900321622c0a45bf41442da133347, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ECL: {fileID: 0}
+  ESL: {fileID: 0}
+  ES: {fileID: 0}
+  EnemyDifficulty: 2

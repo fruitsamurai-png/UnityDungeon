@@ -22,6 +22,7 @@ public class PortalLogic : MonoBehaviour
         if (hero != null)
         {
             var currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+            GameObject.Find("PCGSpawner").GetComponent<PCG>().RoomList.Clear();
             SceneManager.LoadScene(currentSceneIndex);
         }
     }

@@ -43,6 +43,7 @@ public class EnemyStats : MonoBehaviour
         HealthBarComp.MaxHealth = StartingHealth;
         HealthBarComp.Health = StartingHealth;
         Health = StartingHealth;
+        isdestroyed = false;
     }
 
     // Update is called once per frame

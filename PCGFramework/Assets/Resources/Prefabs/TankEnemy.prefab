@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 5279535845806182314}
   - component: {fileID: 5950882103297879953}
   - component: {fileID: 6182720950015070660}
+  - component: {fileID: 4470313954848853660}
   m_Layer: 0
   m_Name: TankEnemy
   m_TagString: Enemy
@@ -32,7 +33,8 @@ Transform:
   m_GameObject: {fileID: 5279535845806182325}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -15.035304, y: -5.5125685, z: 0}
-  m_LocalScale: {x: 1.2, y: 1.2, z: 1}
+  m_LocalScale: {x: 1.21, y: 1.2, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -124,7 +126,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EnemyHealthBarPrefab: {fileID: 1248845440106708752, guid: 8b23492cb9efaae49ace4f65e89236ae,
     type: 3}
-  StartingHealth: 1
+  StartingHealth: 4
 --- !u!114 &5279535845806182315
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -137,9 +139,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40a8053b3862e4a4a85b5cbc794bf950, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AggroRange: 1
-  MoveSpeed: 1
-  WanderInterval: 1
+  AggroRange: 5
+  MoveSpeed: 3
+  WanderInterval: 4
   Aggroed: 0
 --- !u!114 &5279535845806182314
 MonoBehaviour:
@@ -156,8 +158,8 @@ MonoBehaviour:
   BulletPrefab: {fileID: 949405139173548867, guid: 8a17d45d188b39449aa155aa0cdd70e0,
     type: 3}
   ShootCooldown: 1
-  BulletSpeed: 1
-  BulletRange: 10
+  BulletSpeed: 4
+  BulletRange: 5
   BulletsPerShot: 1
   BulletSpreadAngle: 0.5
 --- !u!114 &5950882103297879953
@@ -172,7 +174,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb3aabeb6a3189a4e937c3e3fa76e90d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Weight: 1
+  Weight: 3
   Padding: 1
   Leading: 0
 --- !u!58 &6182720950015070660
@@ -191,3 +193,19 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &4470313954848853660
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5279535845806182325}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 815900321622c0a45bf41442da133347, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ECL: {fileID: 0}
+  ESL: {fileID: 0}
+  ES: {fileID: 0}
+  EnemyDifficulty: 5

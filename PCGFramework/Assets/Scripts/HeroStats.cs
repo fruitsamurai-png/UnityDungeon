@@ -16,6 +16,7 @@ Description:
 *******************************************************************************/
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class HeroStats : MonoBehaviour
 {
@@ -25,8 +26,10 @@ public class HeroStats : MonoBehaviour
 	public GameObject TimedAnchorPrefab;
     public GameObject UiCanvasPrefab;
     public int currentroom=0;
+    public static bool isdead = false;
     private UiStatsDisplay HeroStatsDisplay;
-
+    public static bool gameIsPaused;
+    private bool timeslow = false;
     public int StartingHealth = 3;
     public int MaxHealth
     {
@@ -66,19 +69,21 @@ public class HeroStats : MonoBehaviour
     public int Speed;
 
 	bool FirstPan = true;
-
+    private GameObject cam;
     // Start is called before the first frame update
     void Start()
     {
+        isdead = false;
         //Spawn canvas
         var canvas = Instantiate(UiCanvasPrefab);
         HeroStatsDisplay = canvas.GetComponent<UiStatsDisplay>();
-
+        timeslow = false;
         //Spawn main camera
         var wct = Instantiate(WeightedCameraTargetPrefab);
-        var cam = Instantiate(MainCameraPrefab);
+        cam = Instantiate(MainCameraPrefab);
         cam.GetComponent<CameraFollow>().ObjectToFollow = wct.transform;
-		
+        currentroom = 0;
+
         //Initialize stats
         MaxHealth = StartingHealth;
         Health = MaxHealth;
@@ -105,8 +110,66 @@ public class HeroStats : MonoBehaviour
 		{
 			Application.Quit();
 		}
+        var old = cam.GetComponent<Camera>().orthographicSize;
+        cam.GetComponent<Camera>().orthographicSize = old;
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            gameIsPaused = !gameIsPaused;
+            PauseGame();
+        }
+        if(timeslow)
+        {
+            StartCoroutine(bullettime());
+        }
     }
+    public IEnumerator bullettime()
+    {
+        float duration = 2.0f;
+        float magnitude = 0.3f;
+        float elapsed = 0.0f;
+        while (elapsed < duration)
+        {
+            Time.timeScale = magnitude;
+            Time.fixedDeltaTime = 0.02f * Time.timeScale;
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+        Time.timeScale = 1.0f;
+        timeslow = false;
+    }
+    public IEnumerator CameraShake()
+    {
+        Vector3 originalposition = cam.GetComponent<CameraFollow>().ObjectToFollow.position;
+        float duration = 1.0f;
+        float magnitude = 1.0f;
+        float elapsed = 0.0f;
+        while (elapsed<duration)
+        {
+            float xoffset = originalposition.x + Random.Range(-5f, 5f) * magnitude;
+            float yoffset = originalposition.y+ Random.Range(-5f, 5f) * magnitude;
+            cam.GetComponent<CameraFollow>().ObjectToFollow.position = new Vector3(xoffset, yoffset, 0.0f);
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+        cam.GetComponent<CameraFollow>().ObjectToFollow.position = originalposition;
+    }
+    public void setfalse()
+    {
+        gameObject.SetActive(false);
+    }
+    void PauseGame()
+    {
+        if (gameIsPaused)
+        {
+            Time.timeScale = 0f;
+            cam.GetComponent<Camera>().orthographicSize = 100.0f;
 
+        }
+        else
+        {
+            Time.timeScale = 1;
+        }
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         //Check collision against collectibles
@@ -125,11 +188,13 @@ public class HeroStats : MonoBehaviour
                     ++SilverKeys;
 					//go = Instantiate(TimedAnchorPrefab);
 					//go.transform.position = GameObject.Find("GoldKey(Clone)").transform.position;
-					GameObject[] silverdoors = GameObject.FindGameObjectsWithTag("SilverDoor");
-					foreach(GameObject silverdoor in silverdoors)
+					GameObject[] Silverdoors = GameObject.FindGameObjectsWithTag("SilverDoor");
+					foreach(GameObject silverdoor in Silverdoors)
                         if(silverdoor.name==currentroom.ToString() && SilverKeys>0)
                         {
-						    GameObject.Destroy(silverdoor);
+                            SilverKeys = 0;
+                            currentroom = int.Parse(silverdoor.name) + 1;
+                            GameObject.Destroy(silverdoor);
                         }
                     break;
                 case CollectibleTypes.GoldKey:
@@ -151,6 +216,11 @@ public class HeroStats : MonoBehaviour
                         return;
                     ++Health;
                     break;
+                case CollectibleTypes.SlowTime:
+                {
+                 timeslow = true;
+                 break;
+                }
             }
 
             //Destroy collectible
@@ -166,22 +236,34 @@ public class HeroStats : MonoBehaviour
 
             if (Health <= 0)
             {
-                gameObject.SetActive(false);
-                Invoke("ResetLevel", 1.5f);
+                StartCoroutine(CameraShake());
+                Invoke("setfalse", 2.0f);
+                isdead = true;
+                //GameObject.Find("PCGSpawner").GetComponent<PCG>().RoomList.Clear();
+                Invoke("ResetLevel", 6.5f);
             }
         }
+       
         int count = GameObject.Find("PCGSpawner").GetComponent<PCG>().RoomList.Count;
         for (int i = 0; i < count; ++i)
         {
             PCG.RoomResults obj = GameObject.Find("PCGSpawner").GetComponent<PCG>().RoomList[i];
             if(obj.first_tile!=null)
             {
-                if (collision.gameObject.name == obj.first_tile.name)
+                if (collision.gameObject.name == obj.first_tile.name )
                 {
                     //Debug.Log("currentroom is :"+ obj.first_tile.name);
                     currentroom = int.Parse(obj.first_tile.name);
                 }
             }
+            //if(obj.first_corridor!=null)
+            //{
+            //    if(collision.gameObject.name == obj.first_corridor.name)
+            //    {
+            //        currentroom = int.Parse(obj.first_corridor.name);
+
+            //    }
+            //}
             
 
         }
@@ -190,6 +272,7 @@ public class HeroStats : MonoBehaviour
     void ResetLevel()
     {
         var currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        currentroom = 0;
         SceneManager.LoadScene(currentSceneIndex);
     }
 }
