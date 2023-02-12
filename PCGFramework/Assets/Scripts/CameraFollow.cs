@@ -17,10 +17,10 @@ public class CameraFollow : MonoBehaviour
 {
     //Public Properties
     public Transform ObjectToFollow;
-    public float MaxSpeed = 200.0f;
-    public float MinSpeed = 5.0f; 
+    public float MaxSpeed = 2.0f;
+    public float MinSpeed = 1.0f; 
     public float Interpolant = 0.25f;
-	private float MoveSpeed = 7.0f;
+	private float MoveSpeed = 3.0f;
 	private float MaxAccel = 3.0f;
 
     // Update is called once per frame
@@ -66,7 +66,7 @@ public class CameraFollow : MonoBehaviour
         {
 			transform.position = new Vector3(targetPos.x, targetPos.y, transform.position.z);
         }
-		
+		//Debug.Log(Time.deltaTime);
 		MoveSpeed = (transform.position - oldPosition).magnitude * Time.deltaTime;
         //Find the target zoom level
         float targetZoom = ObjectToFollow.GetComponent<CameraTarget>().Zoom;

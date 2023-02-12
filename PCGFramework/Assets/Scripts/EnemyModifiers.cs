@@ -142,10 +142,10 @@ public class HealthModifier : Modifier
                 script.ES.StartingHealth += 4;
                 break;
             case 5:
-                script.ES.StartingHealth += 4;
+                script.ES.StartingHealth += 5;
                 break;
             case 6:
-                script.ES.StartingHealth += 5  ;
+                script.ES.StartingHealth += 6  ;
                 break;
         }
     }

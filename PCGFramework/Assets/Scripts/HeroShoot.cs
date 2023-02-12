@@ -23,6 +23,7 @@ public class HeroShoot : MonoBehaviour
     public float BulletSpreadAngle = 0.1f;
 	[HideInInspector]
     public int BulletsPerShot = 1;
+    public int MaxBullet = 5;
 
     private float Timer = 1.0f;
 

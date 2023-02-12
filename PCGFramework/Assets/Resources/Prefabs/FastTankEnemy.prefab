@@ -7,6 +7,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5279535845806182312, guid: 8070a2a0bc9956a43ab94c0e829bc530,
+        type: 3}
+      propertyPath: StartingHealth
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 5279535845806182314, guid: 8070a2a0bc9956a43ab94c0e829bc530,
+        type: 3}
+      propertyPath: BulletSpeed
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 5279535845806182315, guid: 8070a2a0bc9956a43ab94c0e829bc530,
         type: 3}
       propertyPath: MoveSpeed

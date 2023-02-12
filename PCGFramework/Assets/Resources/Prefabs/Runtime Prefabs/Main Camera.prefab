@@ -98,6 +98,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ObjectToFollow: {fileID: 0}
-  MaxSpeed: 3
+  MaxSpeed: 2.8
   MinSpeed: 0.01
-  Interpolant: 0.04
+  Interpolant: 0.06

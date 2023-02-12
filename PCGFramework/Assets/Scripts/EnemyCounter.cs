@@ -17,14 +17,14 @@ public class EnemyCounter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        GameObject myTextgameObject = GameObject.Find("PCGSpawner");
+        GameObject myTextgameObject = GameObject.Find("Hero");
         if(myTextgameObject!=null)
         {
-            int counter = myTextgameObject.GetComponent<PCG>().EnemiesRequired;
-            int counter2 = myTextgameObject.GetComponent<PCG>().BossesRequired;
+            int counter = myTextgameObject.GetComponent<HeroShoot>().BulletsPerShot;
+            int counter2 = myTextgameObject.GetComponent<HeroStats>().Speed;
             //if (counter <= 0) counter = 0;
-            text.text = "Enemies Left: " + counter +
-            "\n Bosses Left: " + counter2;
+            text.text = "Bullets: " + counter +
+            "\nSpeed: " + counter2;
         }
         
     }

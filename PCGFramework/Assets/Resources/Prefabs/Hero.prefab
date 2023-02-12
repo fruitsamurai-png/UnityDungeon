@@ -141,8 +141,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 0
   dashspeed: 10
+  dashavailable: 0
   dashlength: 0.5
   dashcooldown: 2
+  dashcoolcounter: 0
 --- !u!114 &2718702606646654963
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -163,7 +165,10 @@ MonoBehaviour:
     type: 3}
   UiCanvasPrefab: {fileID: 7225852543368158398, guid: 346de805ce86cac47a4cbd7ad8df5a68,
     type: 3}
+  rb: {fileID: 0}
+  isDisabled: 0
   currentroom: 0
+  keycollected: 0
   StartingHealth: 3
   StartingSilverKeys: 0
   SilverKeys: 0
@@ -202,6 +207,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb3aabeb6a3189a4e937c3e3fa76e90d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Weight: 2
+  Weight: 9
   Padding: 5
   Leading: 1.2

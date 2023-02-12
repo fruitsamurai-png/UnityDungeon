@@ -126,7 +126,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EnemyHealthBarPrefab: {fileID: 1248845440106708752, guid: 8b23492cb9efaae49ace4f65e89236ae,
     type: 3}
-  StartingHealth: 5
+  StartingHealth: 15
 --- !u!114 &4556069128369105312
 MonoBehaviour:
   m_ObjectHideFlags: 0

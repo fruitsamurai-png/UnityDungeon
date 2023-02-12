@@ -19,6 +19,7 @@ public class DashScript : MonoBehaviour
         if (myTextgameObject != null)
         {
             bool counter = myTextgameObject.GetComponent<TopDownController>().dashavailable;
+            int dashcounter = (int)myTextgameObject.GetComponent<TopDownController>().dashcoolcounter;
             string temp;
             if(counter)
             {
@@ -26,7 +27,7 @@ public class DashScript : MonoBehaviour
             }
             else
             {
-                temp = "Not Available";
+                temp = "Available in " + dashcounter.ToString();
             }
             text.text = "Dash: "+ temp;
         }

@@ -23,7 +23,7 @@ public class TopDownController : MonoBehaviour
     public float dashlength = 0.5f;
     public float dashcooldown = 1.0f;
     private float dashcounter;
-    private float dashcoolcounter;
+    public float dashcoolcounter;
 
     // Start is called before the first frame update
     void Start()
@@ -46,10 +46,25 @@ public class TopDownController : MonoBehaviour
             dir += Vector2.down;
         if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
             dir += Vector2.right;
-
+        if (Input.GetKeyDown(KeyCode.V))
+        {
+            if (!GetComponent<HeroStats>().isDisabled)
+            {
+                Debug.Log("Cheat enabled");
+                speed += 20;
+                GetComponent<HeroStats>().isDisabled = true;
+            }
+            else
+            {
+                Debug.Log("Cheat disabled");
+                speed -= 20;
+                GetComponent<HeroStats>().isDisabled = false;
+            }
+        }
         //Apply velocity
         RB.velocity = dir.normalized * (speed);
-        Dash();
+        if(!GetComponent<HeroStats>().isDisabled)
+            Dash();
     }
     private void Dash()
     {
@@ -61,7 +76,7 @@ public class TopDownController : MonoBehaviour
         {
             if(dashcoolcounter<=0 &&dashcounter<=0)
             {
-                speed = dashspeed;
+                speed += dashspeed;
                 dashcounter = dashlength;
             }
         }
